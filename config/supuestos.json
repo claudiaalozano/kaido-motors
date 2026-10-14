@@ -1,0 +1,42 @@
+{
+  "seed": 20261014,
+  "simulaciones": 1000,
+  "dias_mes": 30,
+  "alpha_revision": 0.35,
+  "limite_revision": [0.6, 1.4],
+  "z_candidatos": [0.0, 0.84, 1.28, 1.65, 2.05],
+  "fraccion_transfer": 0.5,
+  "limite_transfer_demanda": 0.2,
+  "factor_en_camino": 1.0,
+  "incremento_demanda_censurada_max": 0.5,
+  "mes_lanzamiento_A013": 4,
+  "escenarios": {
+    "pesimista": {
+      "paro_delta": 2.0, "confianza_delta": -10.0,
+      "credito_delta": 1.0, "viajeros_delta": -5.0,
+      "meses_caida": 6, "incentivo_publico": 0,
+      "producto_factor": 0.9, "retraso_lanzamiento": 3,
+      "arancel_pct_coste": 0.05, "prima_co2": true,
+      "segmento_interrupcion": "MSUV", "mes_interrupcion": 6,
+      "sigma_factor": 1.25
+    },
+    "central": {
+      "paro_delta": 0.0, "confianza_delta": 0.0,
+      "credito_delta": 0.0, "viajeros_delta": 0.0,
+      "meses_caida": 3, "incentivo_publico": 0,
+      "producto_factor": 1.0, "retraso_lanzamiento": 0,
+      "arancel_pct_coste": 0.0, "prima_co2": false,
+      "segmento_interrupcion": null, "mes_interrupcion": null,
+      "sigma_factor": 1.0
+    },
+    "optimista": {
+      "paro_delta": -1.0, "confianza_delta": 5.0,
+      "credito_delta": -1.0, "viajeros_delta": 5.0,
+      "meses_caida": 1, "incentivo_publico": 1,
+      "producto_factor": 1.1, "retraso_lanzamiento": 0,
+      "arancel_pct_coste": 0.0, "prima_co2": false,
+      "segmento_interrupcion": null, "mes_interrupcion": null,
+      "sigma_factor": 0.9
+    }
+  }
+}

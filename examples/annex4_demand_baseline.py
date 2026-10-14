@@ -48,3 +48,9 @@ modelo = sm.tsa.SARIMAX(np.log(y[ent]), exog=X[ent], order=(1, 0, 0),
     # Ocurre cuando hay pocos datos de entrenamiento y el modelo no converge. En ese caso, aumentar el número de iteraciones puede ayudar a que el modelo encuentre una solución.
 )
 prevision = np.exp(modelo.forecast(12, exog=X[~ent]))
+
+
+print("Previsión de A012:")
+print(prevision)
+
+plt.show()

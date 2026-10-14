@@ -16,7 +16,12 @@ import statsmodels.api as sm
 
 DATA_DIR = Path(__file__).resolve().parents[1] / "data"
 VARIABLES_BASE = [
-    "paro", "confianza_consumidor", "dias_laborables", "semana_santa"
+    "paro",
+    "confianza_consumidor",
+    "dias_laborables",
+    "semana_santa",
+    "adelanto_compras",
+    "caida_tras_adelanto"
 ]
 
 

@@ -49,12 +49,12 @@ def cargar_datos(segmento="MSUV"):
     return y, X
 
 
-def entrenar_modelo(y_entrenamiento, X_entrenamiento):
-    """Entrena SARIMAX con los parámetros actuales del notebook."""
+def entrenar_modelo(y_entrenamiento, X_entrenamiento, orden=(1, 0, 0)):
+    """Entrena SARIMAX con el orden indicado."""
     return sm.tsa.SARIMAX(
         np.log(y_entrenamiento),
         exog=X_entrenamiento,
-        order=(1, 0, 0),
+        order=orden,
         seasonal_order=(0, 1, 1, 12),
     ).fit(disp=False, maxiter=1000)
 

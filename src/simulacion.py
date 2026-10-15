@@ -263,7 +263,7 @@ def simular_escenarios(demanda, escenarios, inicio, z):
     Devuelve:
       tabla5: resultados medios por escenario y segmento (más el TOTAL),
       rangos: percentiles 5 y 95 de ventas y margen,
-      plan:   llegadas mensuales medianas por segmento en el escenario central
+      plan:   llegadas mensuales medias por segmento en el escenario central
               (el plan de producción que se propone al comité).
     """
     sup, eco = cargar_supuestos(), cargar_economia()
@@ -283,7 +283,7 @@ def simular_escenarios(demanda, escenarios, inicio, z):
                            "margen_p5": np.percentile(r["margen_neto"], 5),
                            "margen_p95": np.percentile(r["margen_neto"], 95)})
             if nombre == "central":
-                plan[s] = np.median(r["llegadas_mes"], axis=0)
+                plan[s] = r["llegadas_mes"].mean(axis=0)
             # para el total, sumamos simulación a simulación
             sim_tot = {k: r[k] for k in ("ventas", "margen_neto")}
             tot = sim_tot if tot is None else {k: tot[k] + sim_tot[k] for k in tot}
@@ -309,7 +309,8 @@ def simular_escenarios(demanda, escenarios, inicio, z):
         "margen_neto": "CVP menos coste del stock (EUR)",
     }
     tabla5 = (df.set_index(["segmento", "escenario"])[list(nombres)]
-              .rename(columns=nombres).stack().unstack("escenario")
-              [["pesimista", "central", "optimista"]])
+              .rename(columns=nombres).stack().unstack("escenario"))
+    orden = [e for e in ("pesimista", "central", "optimista") if e in tabla5.columns]
+    tabla5 = tabla5[orden + [e for e in tabla5.columns if e not in orden]]
     plan = pd.DataFrame(plan, index=pd.date_range("2013-01-01", periods=12, freq="MS")).round(0)
     return tabla5, pd.DataFrame(rangos), plan
